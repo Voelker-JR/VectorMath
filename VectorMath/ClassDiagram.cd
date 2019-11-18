@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="VectorMath.Vector">
+    <Position X="3.75" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAg6AEAAAAAAAIAAJAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VectorMath.Matrix">
+    <Position X="7.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAA6AEAAAAAAAAAAJAAAAAAAAgAAAI=</HashCode>
+      <FileName>Matrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VectorMath.DimensionException">
+    <Position X="12" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DimensionException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Exception" Collapsed="true">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

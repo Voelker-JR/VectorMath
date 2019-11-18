@@ -1,0 +1,7 @@
+C:\Users\Roland\source\repos\VectorMath\VectorMath\bin\Debug\netstandard2.0\VectorMath.deps.json
+C:\Users\Roland\source\repos\VectorMath\VectorMath\bin\Debug\netstandard2.0\VectorMath.dll
+C:\Users\Roland\source\repos\VectorMath\VectorMath\bin\Debug\netstandard2.0\VectorMath.pdb
+C:\Users\Roland\source\repos\VectorMath\VectorMath\obj\Debug\netstandard2.0\VectorMath.AssemblyInfoInputs.cache
+C:\Users\Roland\source\repos\VectorMath\VectorMath\obj\Debug\netstandard2.0\VectorMath.AssemblyInfo.cs
+C:\Users\Roland\source\repos\VectorMath\VectorMath\obj\Debug\netstandard2.0\VectorMath.dll
+C:\Users\Roland\source\repos\VectorMath\VectorMath\obj\Debug\netstandard2.0\VectorMath.pdb
