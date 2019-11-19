@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VectorMath
 {
@@ -207,7 +208,8 @@ namespace VectorMath
             if (Dim != v.Dim) return false;
 
             for (int i = 0; i < Dim; i++)
-                if (Data[i] != v[i]) return false;
+                if (Math.Abs(Data[i] - v[i]) > Constants.Eps)
+                    return false;
 
             return true;
         }

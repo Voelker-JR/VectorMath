@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace VectorMath
 {
@@ -22,7 +23,7 @@ namespace VectorMath
             Data = new double[mat.Rows, mat.Columns];
 
             for (int i = 0; i < Rows; i++)
-                for (int j = 0; j < Columns; i++)
+                for (int j = 0; j < Columns; j++)
                     Data[i, j] = mat[i, j];
         }
 
@@ -146,7 +147,8 @@ namespace VectorMath
 
             for (int i = 0; i < m.Rows; i++)
                 for (int j = 0; j < m.Columns; j++)
-                    if (Data[i, j] != m[i, j]) return false;
+                    if (Math.Abs(Data[i, j] - m[i, j]) > Constants.Eps)
+                        return false;
 
             return true;
         }

@@ -62,5 +62,55 @@ namespace VectorMathTests
 
             Assert.Fail("No exception thrown!");
         }
+
+        [TestMethod]
+        public void TestMatrixMatrixMultiplication()
+        {
+            Matrix a = new Matrix(2, 3);
+            Matrix b = new Matrix(5, 3);
+
+            try
+            {
+                Matrix res = a * b;
+            }
+            catch (DimensionException ex)
+            {
+                StringAssert.Contains(ex.Message, Matrix.columnRowDimensionsAreNotTheSame);
+                return;
+            }
+
+            Assert.Fail("No exception thrown!");
+        }
+
+        [TestMethod]
+        public void TestMatrixAddition()
+        {
+            Matrix a = new Matrix(2, 4);
+            Matrix b = new Matrix(5, 3);
+
+            try
+            {
+                Matrix res = a + b;
+            }
+            catch (DimensionException ex)
+            {
+                StringAssert.Contains(ex.Message, Matrix.rowDimensionsAreNotTheSame);
+            }
+
+            // Corrected number of rows
+            Matrix c = new Matrix(2, 5);
+
+            try
+            {
+                Matrix res = a + c;
+            }
+            catch (DimensionException ex)
+            {
+                StringAssert.Contains(ex.Message, Matrix.columnDimensionsAreNotTheSame);
+                return;
+            }
+
+            Assert.Fail("No exception thrown!");
+        }
     }
 }
