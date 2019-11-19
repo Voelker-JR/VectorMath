@@ -161,5 +161,20 @@ namespace VectorMath
             hashCode = hashCode * -1521134295 + Columns.GetHashCode();
             return hashCode;
         }
+
+        public override string ToString()
+        {
+            string result = "";
+
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                    result += Data[i, j] + " ";
+
+                result += "\n";
+            }
+
+            return result;
+        }
     }
 }

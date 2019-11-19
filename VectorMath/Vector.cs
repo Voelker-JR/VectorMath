@@ -221,5 +221,22 @@ namespace VectorMath
             hashCode = hashCode * -1521134295 + Dim.GetHashCode();
             return hashCode;
         }
+
+        public override string ToString()
+        {
+            string result = "[";
+
+            for (int i = 0; i < Dim; i++)
+            {
+                result += Data[i];
+
+                if (i < Dim - 1)
+                    result += ", ";
+                else
+                    result += "]";
+            }
+
+            return result;
+        }
     }
 }
