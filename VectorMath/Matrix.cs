@@ -139,6 +139,17 @@ namespace VectorMath
             return result;
         }
 
+        public Matrix Apply(AppliableFunction function)
+        {
+            Matrix result = new Matrix(this);
+
+            for (int i = 0; i < result.Rows; i++)
+                for (int j = 0; j < result.Columns; j++)
+                    result[i, j] = function(result[i, j]);
+
+            return result;
+        }
+
         public override bool Equals(object o)
         {
             if (!(o is Matrix)) return false;

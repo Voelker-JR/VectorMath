@@ -199,6 +199,16 @@ namespace VectorMath
             return result;
         }
 
+        public Vector Apply(AppliableFunction function)
+        {
+            Vector result = new Vector(this);
+
+            for (int i = 0; i < result.Dim; i++)
+                result[i] = function(result[i]);
+
+            return result;
+        }
+
         public override bool Equals(object o)
         {
             if (!(o is Vector)) return false;
