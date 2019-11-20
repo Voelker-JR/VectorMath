@@ -136,5 +136,51 @@ namespace VectorMathTests
 
             Assert.AreEqual(expected, -a);
         }
+
+        [TestMethod]
+        public void TestAdditionAssignment()
+        {
+            Matrix a = new Matrix(new double[,] {
+                { 1, 2, 3 },
+                { 4, 5, 6 }
+            });
+
+            Matrix b = new Matrix(new double[,]
+            {
+                { 1, 1, 1 },
+                { 1, 1, 1 }
+            });
+
+            a += b;
+
+            Matrix expected = new Matrix(new double[,]
+            {
+                { 2, 3, 4 },
+                { 5, 6, 7 }
+            });
+
+            Assert.AreEqual(expected, a);
+        }
+
+        [TestMethod]
+        public void TestFunctionApplication()
+        {
+            Matrix mat = new Matrix(new double[,]
+            {
+                { 1, 2 },
+                { 3, 4 },
+                { 5, 6 }
+            });
+
+            static double f(double d) => 2 * d;
+
+            Matrix expected = new Matrix(new double[,] {
+                { 2, 4 },
+                { 6, 8 },
+                { 10, 12 }
+            });
+
+            Assert.AreEqual(expected, mat.Apply(f));
+        }
     }
 }

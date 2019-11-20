@@ -126,7 +126,24 @@ namespace VectorMathTests
         [TestMethod]
         public void TestAdditionAssignment()
         {
+            Vector a = new Vector(new double[] { 1, 2, 3 });
+            Vector b = new Vector(new double[] { 1, 1, 1 });
 
+            a += b;
+
+            Vector expected = new Vector(new double[] { 2, 3, 4 });
+            Assert.AreEqual(expected, a);
+        }
+
+        [TestMethod]
+        public void TestFunctionApplication()
+        {
+            Vector a = new Vector(new double[] { 1, 2, 3 });
+            static double f(double d) => 2 * d;
+
+            Vector expected = new Vector(new double[] { 2, 4, 6 });
+
+            Assert.AreEqual(expected, a.Apply(f));
         }
     }
 }
