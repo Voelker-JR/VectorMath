@@ -248,5 +248,86 @@ namespace VectorMath
 
             return result;
         }
+
+
+        public static class Factory
+        {
+            public static Vector Fill(int dim, double value)
+            {
+                Vector result = new Vector(dim);
+
+                for (int i = 0; i < dim; i++)
+                    result[i] = value;
+
+                return result;
+            }
+
+            public static Vector Random(int dim, double minValue, double maxValue)
+            {
+                Vector result = new Vector(dim);
+                Random random = new Random();
+
+                for (int i = 0; i < dim; i++)
+                    result[i] = random.NextDouble() * (maxValue - minValue) + minValue;
+
+                return result;
+            }
+
+            public static Vector BasisVector(int dim, int k)
+            {
+                Vector result = new Vector(dim);
+                result[k] = 1;
+
+                return result;
+            }
+
+            public static Vector FitIn(int dim, int shift, Vector v)
+            {
+                Vector result = new Vector(dim);
+
+                if (shift >= 0)
+                    for (int i = 0; i + shift < dim && i < v.Dim; i++)
+                        result[i + shift] = v[i];
+                else
+                    for (int i = 0; i + shift < v.Dim && i < dim; i++)
+                        result[i] = v[i + shift];
+
+                return result;
+            }
+
+            public static Vector FitIn(Vector original, int shift, Vector v)
+            {
+                Vector result = new Vector(original);
+
+                if (shift >= 0)
+                    for (int i = 0; i + shift < result.Dim && i < v.Dim; i++)
+                        result[i + shift] = v[i];
+                else
+                    for (int i = 0; i - shift < v.Dim && i < result.Dim; i++)
+                        result[i] = v[i - shift];
+
+                return result;
+            }
+
+            public static Vector ExtractRow(Matrix mat, int row)
+            {
+                Vector result = new Vector(mat.Columns);
+
+                for (int i = 0; i < mat.Columns; i++)
+                    result[i] = mat[row, i];
+
+                return result;
+            }
+
+            public static Vector ExtractColumn(Matrix mat, int column)
+            {
+                Vector result = new Vector(mat.Rows);
+
+                for (int i = 0; i < mat.Rows; i++)
+                    result[i] = mat[i, column];
+
+                return result;
+            }
+        }
     }
 }

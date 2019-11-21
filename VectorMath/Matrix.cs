@@ -187,5 +187,42 @@ namespace VectorMath
 
             return result;
         }
+
+
+        public static class Factory
+        {
+            public static Matrix Fill(int rows, int columns, double value)
+            {
+                Matrix result = new Matrix(rows, columns);
+
+                for (int i = 0; i < rows; i++)
+                    for (int j = 0; j < columns; j++)
+                        result[i, j] = value;
+
+                return result;
+            }
+
+            public static Matrix Random(int rows, int columns, double minValue, double maxValue)
+            {
+                Matrix result = new Matrix(rows, columns);
+                Random random = new Random();
+
+                for (int i = 0; i < rows; i++)
+                    for (int j = 0; j < columns; j++)
+                        result[i, j] = random.NextDouble() * (maxValue - minValue) + minValue;
+
+                return result;
+            }
+
+            public static Matrix Identity(int size)
+            {
+                Matrix result = new Matrix(size, size);
+
+                for (int i = 0; i < size; i++)
+                    result[i, i] = 1;
+
+                return result;
+            }
+        }
     }
 }
