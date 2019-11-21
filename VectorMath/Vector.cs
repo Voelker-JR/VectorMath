@@ -72,6 +72,26 @@ namespace VectorMath
             return result;
         }
 
+        public static Vector operator +(Vector v, double d)
+        {
+            return v + Factory.Fill(v.Dim, d);
+        }
+
+        public static Vector operator +(double d, Vector v)
+        {
+            return Factory.Fill(v.Dim, d) + v;
+        }
+
+        public static Vector operator -(Vector v, double d)
+        {
+            return v - Factory.Fill(v.Dim, d);
+        }
+
+        public static Vector operator -(double d, Vector v)
+        {
+            return Factory.Fill(v.Dim, d) - v;
+        }
+
         public static Vector operator -(Vector v)
         {
             Vector result = new Vector(v);

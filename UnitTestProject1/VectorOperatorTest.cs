@@ -145,5 +145,25 @@ namespace VectorMathTests
 
             Assert.AreEqual(expected, a.Apply(f));
         }
+
+        [TestMethod]
+        public void TestVectorScalarAdditionSubtraction()
+        {
+            Vector a = new Vector(new double[] { 1, 2, 3 });
+            double d = 3;
+
+            Vector expected = new Vector(new double[] { 4, 5, 6 });
+
+            Assert.AreEqual(expected, a + d);
+            Assert.AreEqual(expected, d + a);
+
+            expected = new Vector(new double[] { -2, -1, 0 });
+
+            Assert.AreEqual(expected, a - d);
+
+            expected = new Vector(new double[] { 2, 1, 0 });
+
+            Assert.AreEqual(expected, d - a);
+        }
     }
 }
