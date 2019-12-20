@@ -11,7 +11,7 @@ namespace VectorMathTests
         {
             Matrix mat = Matrix.Factory.Fill(2, 2, 1);
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
                 { 1, 1 },
                 { 1, 1 }
@@ -25,7 +25,7 @@ namespace VectorMathTests
         {
             Matrix mat = Matrix.Factory.Identity(3);
 
-            Matrix expected = new Matrix(new double[,] {
+            Matrix expected = new Matrix(new decimal[,] {
                 { 1, 0, 0 },
                 { 0, 1, 0 },
                 { 0, 0, 1 }

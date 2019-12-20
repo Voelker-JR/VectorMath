@@ -11,7 +11,7 @@ namespace VectorMath
 
         public Vector(int dim)
         {
-            Data = new double[dim];
+            Data = new decimal[dim];
 
             for (int i = 0; i < dim; i++)
                 Data[i] = 0;
@@ -19,13 +19,13 @@ namespace VectorMath
 
         public Vector(Vector v)
         {
-            Data = new double[v.Data.Length];
+            Data = new decimal[v.Data.Length];
 
             for (int i = 0; i < Dim; i++)
                 Data[i] = v.Data[i];
         }
 
-        public Vector(double[] data)
+        public Vector(decimal[] data)
         {
             Data = data;
         }
@@ -33,14 +33,14 @@ namespace VectorMath
         /// <summary>
         /// Contains all values of the vector.
         /// </summary>
-        public double[] Data { get; set; }
+        public decimal[] Data { get; set; }
 
         public int Dim
         {
             get => Data.Length;
         }
 
-        public double this[int index]
+        public decimal this[int index]
         {
             get => Data[index];
             set => Data[index] = value;
@@ -72,22 +72,22 @@ namespace VectorMath
             return result;
         }
 
-        public static Vector operator +(Vector v, double d)
+        public static Vector operator +(Vector v, decimal d)
         {
             return v + Factory.Fill(v.Dim, d);
         }
 
-        public static Vector operator +(double d, Vector v)
+        public static Vector operator +(decimal d, Vector v)
         {
             return Factory.Fill(v.Dim, d) + v;
         }
 
-        public static Vector operator -(Vector v, double d)
+        public static Vector operator -(Vector v, decimal d)
         {
             return v - Factory.Fill(v.Dim, d);
         }
 
-        public static Vector operator -(double d, Vector v)
+        public static Vector operator -(decimal d, Vector v)
         {
             return Factory.Fill(v.Dim, d) - v;
         }
@@ -105,7 +105,7 @@ namespace VectorMath
         /// <summary>
         /// Defines a product between a vector and a scalar.
         /// </summary>
-        public static Vector operator *(Vector v, double lambda)
+        public static Vector operator *(Vector v, decimal lambda)
         {
             Vector result = new Vector(v);
 
@@ -118,7 +118,7 @@ namespace VectorMath
         /// <summary>
         /// Defines a product between a scalar and a vector.
         /// </summary>
-        public static Vector operator *(double lambda, Vector v)
+        public static Vector operator *(decimal lambda, Vector v)
         {
             Vector result = new Vector(v);
 
@@ -131,12 +131,12 @@ namespace VectorMath
         /// <summary>
         /// Defines a scalar product between two vectors.
         /// </summary>
-        public static double operator *(Vector a, Vector b)
+        public static decimal operator *(Vector a, Vector b)
         {
             if (a.Dim != b.Dim)
                 throw new DimensionException($"{ dimensionsAreNotTheSameMessage } Lefthand side: { a.Dim }, righthand side: { b.Dim }.");
 
-            double result = 0;
+            decimal result = 0;
 
             for (int i = 0; i < a.Dim; i++)
                 result += a[i] * b[i];
@@ -247,7 +247,7 @@ namespace VectorMath
         public override int GetHashCode()
         {
             var hashCode = 594937702;
-            hashCode = hashCode * -1521134295 + EqualityComparer<double[]>.Default.GetHashCode(Data);
+            hashCode = hashCode * -1521134295 + EqualityComparer<decimal[]>.Default.GetHashCode(Data);
             hashCode = hashCode * -1521134295 + Dim.GetHashCode();
             return hashCode;
         }
@@ -272,7 +272,7 @@ namespace VectorMath
 
         public static class Factory
         {
-            public static Vector Fill(int dim, double value)
+            public static Vector Fill(int dim, decimal value)
             {
                 Vector result = new Vector(dim);
 
@@ -282,13 +282,13 @@ namespace VectorMath
                 return result;
             }
 
-            public static Vector Random(int dim, double minValue, double maxValue)
+            public static Vector Random(int dim, decimal minValue, decimal maxValue)
             {
                 Vector result = new Vector(dim);
                 Random random = new Random();
 
                 for (int i = 0; i < dim; i++)
-                    result[i] = random.NextDouble() * (maxValue - minValue) + minValue;
+                    result[i] = ((decimal) random.NextDouble()) * (maxValue - minValue) + minValue;
 
                 return result;
             }
@@ -311,6 +311,16 @@ namespace VectorMath
                 else
                     for (int i = 0; i + shift < v.Dim && i < dim; i++)
                         result[i] = v[i + shift];
+
+                return result;
+            }
+
+            public static Vector FitIn(int dim, Vector v)
+            {
+                Vector result = new Vector(dim);
+
+                for (int i = 0; i < dim && i < v.Dim; i++)
+                    result[i] = v[i];
 
                 return result;
             }

@@ -1,9 +1,12 @@
-﻿namespace VectorMath
+﻿using System;
+
+namespace VectorMath
 {
     public struct Constants
     {
-        public const double Eps = 1e-16;
+        public const decimal Eps = 1e-24m;
     }
 
-    public delegate double AppliableFunction(double d);
+
+    public delegate decimal AppliableFunction(decimal x);
 }

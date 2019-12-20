@@ -11,7 +11,7 @@ namespace VectorMath
 
         public Matrix(int rows, int columns)
         {
-            Data = new double[rows, columns];
+            Data = new decimal[rows, columns];
 
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < columns; j++)
@@ -20,25 +20,25 @@ namespace VectorMath
 
         public Matrix(Matrix mat)
         {
-            Data = new double[mat.Rows, mat.Columns];
+            Data = new decimal[mat.Rows, mat.Columns];
 
             for (int i = 0; i < Rows; i++)
                 for (int j = 0; j < Columns; j++)
                     Data[i, j] = mat[i, j];
         }
 
-        public Matrix(double[,] data)
+        public Matrix(decimal[,] data)
         {
             Data = data;
         }
 
-        public double this[int row, int column]
+        public decimal this[int row, int column]
         {
             get => Data[row, column];
             set => Data[row, column] = value;
         }
 
-        public double[,] Data { get; set; }
+        public decimal[,] Data { get; set; }
 
         public int Rows { get => Data.GetLength(0); }
 
@@ -106,7 +106,7 @@ namespace VectorMath
             return result;
         }
 
-        public static Matrix operator *(Matrix mat, double lambda)
+        public static Matrix operator *(Matrix mat, decimal lambda)
         {
             Matrix result = new Matrix(mat);
 
@@ -117,13 +117,29 @@ namespace VectorMath
             return result;
         }
 
-        public static Matrix operator *(double lambda, Matrix mat)
+        public static Matrix operator *(decimal lambda, Matrix mat)
         {
             Matrix result = new Matrix(mat);
 
             for (int i = 0; i < mat.Rows; i++)
                 for (int j = 0; j < mat.Columns; j++)
                     result[i, j] *= lambda;
+
+            return result;
+        }
+
+        public static Matrix operator ^(Matrix a, Matrix b)
+        {
+            if (a.Rows != b.Rows)
+                throw new DimensionException($"{ rowDimensionsAreNotTheSame } Lefthand side: { a.Rows }, righthand side { b.Rows }.");
+            if (a.Columns != b.Columns)
+                throw new DimensionException($"{ columnDimensionsAreNotTheSame } Lefthand side: { a.Columns }, righthand side { b.Columns }.");
+
+            Matrix result = new Matrix(a);
+
+            for (int i = 0; i < a.Rows; i++)
+                for (int j = 0; j < a.Columns; j++)
+                    result[i, j] *= b[i, j];
 
             return result;
         }
@@ -167,7 +183,7 @@ namespace VectorMath
         public override int GetHashCode()
         {
             var hashCode = 328679401;
-            hashCode = hashCode * -1521134295 + EqualityComparer<double[,]>.Default.GetHashCode(Data);
+            hashCode = hashCode * -1521134295 + EqualityComparer<decimal[,]>.Default.GetHashCode(Data);
             hashCode = hashCode * -1521134295 + Rows.GetHashCode();
             hashCode = hashCode * -1521134295 + Columns.GetHashCode();
             return hashCode;
@@ -191,7 +207,7 @@ namespace VectorMath
 
         public static class Factory
         {
-            public static Matrix Fill(int rows, int columns, double value)
+            public static Matrix Fill(int rows, int columns, decimal value)
             {
                 Matrix result = new Matrix(rows, columns);
 
@@ -202,14 +218,14 @@ namespace VectorMath
                 return result;
             }
 
-            public static Matrix Random(int rows, int columns, double minValue, double maxValue)
+            public static Matrix Random(int rows, int columns, decimal minValue, decimal maxValue)
             {
                 Matrix result = new Matrix(rows, columns);
                 Random random = new Random();
 
                 for (int i = 0; i < rows; i++)
                     for (int j = 0; j < columns; j++)
-                        result[i, j] = random.NextDouble() * (maxValue - minValue) + minValue;
+                        result[i, j] = ((decimal) random.NextDouble()) * (maxValue - minValue) + minValue;
 
                 return result;
             }

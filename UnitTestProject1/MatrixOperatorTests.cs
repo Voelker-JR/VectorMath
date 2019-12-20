@@ -9,22 +9,22 @@ namespace VectorMathTests
         [TestMethod]
         public void TestMatrixAddition()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, -5, 6 }
             });
 
-            Matrix b = new Matrix(new double[,]
+            Matrix b = new Matrix(new decimal[,]
             {
-                { 1.5, 2.5, 3.5 },
-                { -4.5, 5.5, 6.5 }
+                { 1.5m, 2.5m, 3.5m },
+                { -4.5m, 5.5m, 6.5m }
             });
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
-                { 2.5, 4.5, 6.5 },
-                { -0.5, 0.5, 12.5 }
+                { 2.5m, 4.5m, 6.5m },
+                { -0.5m, 0.5m, 12.5m }
             });
 
             Assert.AreEqual(expected, a + b);
@@ -33,22 +33,22 @@ namespace VectorMathTests
         [TestMethod]
         public void TestMatrixSubtraction()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 7, 9, -3 },
                 { 8, -5, 6 }
             });
 
-            Matrix b = new Matrix(new double[,]
+            Matrix b = new Matrix(new decimal[,]
             {
-                { 1.5, 2.5, 3.5 },
-                { -4.5, 5.5, 6.5 }
+                { 1.5m, 2.5m, 3.5m },
+                { -4.5m, 5.5m, 6.5m }
             });
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
-                { 5.5, 6.5, -6.5 },
-                { 12.5, -10.5, -0.5 }
+                { 5.5m, 6.5m, -6.5m },
+                { 12.5m, -10.5m, -0.5m }
             });
 
             Assert.AreEqual(expected, a - b);
@@ -57,43 +57,67 @@ namespace VectorMathTests
         [TestMethod]
         public void TestMatrixMultiplication()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, -5, 6 }
             });
 
-            Matrix b = new Matrix(new double[,]
+            Matrix b = new Matrix(new decimal[,]
             {
                 { 0, 0, 1 },
-                { 1, -0.5, -1 },
+                { 1, -0.5m, -1 },
                 { 1, 0, 1 }
             });
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
                 { 5, -1, 2 },
-                { 1, 2.5, 15 }
+                { 1, 2.5m, 15 }
             });
 
             Assert.AreEqual(expected, a * b);
         }
 
         [TestMethod]
+        public void TestCoordinatewiseMultiplication()
+        {
+            Matrix a = new Matrix(new decimal[,]
+            {
+                { 1, 2, 3 },
+                { 4, -5, 6 }
+            });
+
+            Matrix b = new Matrix(new decimal[,]
+            {
+                { 3, 2, 1 },
+                { 5, 4, 6 }
+            });
+
+            Matrix expected = new Matrix(new decimal[,]
+            {
+                { 3, 4, 3 },
+                { 20, -20, 36 }
+            });
+
+            Assert.AreEqual(expected, a ^ b);
+        }
+
+        [TestMethod]
         public void TestMatrixScalarMultiplication()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 1, 2 },
                 { 4, -5 }
             });
 
-            double lambda = 0.25;
+            decimal lambda = 0.25m;
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
-                { 0.25, 0.5 },
-                { 1, -1.25 }
+                { 0.25m, 0.5m },
+                { 1, -1.25m }
             });
 
             Assert.AreEqual(expected, a * lambda);
@@ -103,13 +127,13 @@ namespace VectorMathTests
         [TestMethod]
         public void TestMatrixTransposed()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, -5, 6 }
             });
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
                 { 1, 4 },
                 { 2, -5 },
@@ -122,13 +146,13 @@ namespace VectorMathTests
         [TestMethod]
         public void TestMatrixInversionOperation()
         {
-            Matrix a = new Matrix(new double[,]
+            Matrix a = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, -5, 6 }
             });
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
                 { -1, -2, -3 },
                 { -4, 5, -6 }
@@ -140,12 +164,12 @@ namespace VectorMathTests
         [TestMethod]
         public void TestAdditionAssignment()
         {
-            Matrix a = new Matrix(new double[,] {
+            Matrix a = new Matrix(new decimal[,] {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
 
-            Matrix b = new Matrix(new double[,]
+            Matrix b = new Matrix(new decimal[,]
             {
                 { 1, 1, 1 },
                 { 1, 1, 1 }
@@ -153,7 +177,7 @@ namespace VectorMathTests
 
             a += b;
 
-            Matrix expected = new Matrix(new double[,]
+            Matrix expected = new Matrix(new decimal[,]
             {
                 { 2, 3, 4 },
                 { 5, 6, 7 }
@@ -165,16 +189,16 @@ namespace VectorMathTests
         [TestMethod]
         public void TestFunctionApplication()
         {
-            Matrix mat = new Matrix(new double[,]
+            Matrix mat = new Matrix(new decimal[,]
             {
                 { 1, 2 },
                 { 3, 4 },
                 { 5, 6 }
             });
 
-            static double f(double d) => 2 * d;
+            static decimal f(decimal d) => 2 * d;
 
-            Matrix expected = new Matrix(new double[,] {
+            Matrix expected = new Matrix(new decimal[,] {
                 { 2, 4 },
                 { 6, 8 },
                 { 10, 12 }

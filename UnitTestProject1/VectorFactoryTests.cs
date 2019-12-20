@@ -9,22 +9,22 @@ namespace VectorMathTests
         [TestMethod]
         public void TestFitInMethod()
         {
-            Vector a = new Vector(new double[] { 1, 2, 3, 4 });
-            Vector b = new Vector(new double[] { -1, -2, -3, -4 });
+            Vector a = new Vector(new decimal[] { 1, 2, 3, 4 });
+            Vector b = new Vector(new decimal[] { -1, -2, -3, -4 });
 
-            Vector expected = new Vector(new double[] { -1, 1, 2, 3 });
+            Vector expected = new Vector(new decimal[] { -1, 1, 2, 3 });
 
             Assert.AreEqual(expected, Vector.Factory.FitIn(b, 1, a));
 
-            expected = new Vector(new double[] { 3, 4, -3, -4 });
+            expected = new Vector(new decimal[] { 3, 4, -3, -4 });
 
             Assert.AreEqual(expected, Vector.Factory.FitIn(b, -2, a));
 
             b = Vector.Factory.FitIn(3, 0, b);
 
-            Assert.AreEqual(b, new Vector(new double[] { -1, -2, -3 }));
+            Assert.AreEqual(b, new Vector(new decimal[] { -1, -2, -3 }));
 
-            expected = new Vector(new double[] { 3, 4, -3 });
+            expected = new Vector(new decimal[] { 3, 4, -3 });
 
             Assert.AreEqual(expected, Vector.Factory.FitIn(b, -2, a));
         }
@@ -42,7 +42,7 @@ namespace VectorMathTests
         public void TestBasisVectorMethod()
         {
             Vector v = Vector.Factory.BasisVector(5, 3);
-            Vector expected = new Vector(new double[] { 0, 0, 0, 1, 0 });
+            Vector expected = new Vector(new decimal[] { 0, 0, 0, 1, 0 });
 
             Assert.AreEqual(expected, v);
         }
@@ -51,7 +51,7 @@ namespace VectorMathTests
         public void TestFillMethod()
         {
             Vector v = Vector.Factory.Fill(5, -3);
-            Vector expected = new Vector(new double[] { -3, -3, -3, -3, -3 });
+            Vector expected = new Vector(new decimal[] { -3, -3, -3, -3, -3 });
 
             Assert.AreEqual(expected, v);
         }
@@ -59,13 +59,13 @@ namespace VectorMathTests
         [TestMethod]
         public void TestExtractRowMethod()
         {
-            Matrix mat = new Matrix(new double[,]
+            Matrix mat = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
 
-            Vector expected = new Vector(new double[] { 4, 5, 6 });
+            Vector expected = new Vector(new decimal[] { 4, 5, 6 });
 
             Assert.AreEqual(Vector.Factory.ExtractRow(mat, 1), expected);
         }
@@ -73,13 +73,13 @@ namespace VectorMathTests
         [TestMethod]
         public void TestExtractColumnMethod()
         {
-            Matrix mat = new Matrix(new double[,]
+            Matrix mat = new Matrix(new decimal[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
 
-            Vector expected = new Vector(new double[] { 2, 5 });
+            Vector expected = new Vector(new decimal[] { 2, 5 });
 
             Assert.AreEqual(expected, Vector.Factory.ExtractColumn(mat, 1));
         }
