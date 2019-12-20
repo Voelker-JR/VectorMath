@@ -11,7 +11,7 @@ namespace VectorMath
 
         public Matrix(int rows, int columns)
         {
-            Data = new decimal[rows, columns];
+            Data = new double[rows, columns];
 
             for (int i = 0; i < rows; i++)
                 for (int j = 0; j < columns; j++)
@@ -20,25 +20,25 @@ namespace VectorMath
 
         public Matrix(Matrix mat)
         {
-            Data = new decimal[mat.Rows, mat.Columns];
+            Data = new double[mat.Rows, mat.Columns];
 
             for (int i = 0; i < Rows; i++)
                 for (int j = 0; j < Columns; j++)
                     Data[i, j] = mat[i, j];
         }
 
-        public Matrix(decimal[,] data)
+        public Matrix(double[,] data)
         {
             Data = data;
         }
 
-        public decimal this[int row, int column]
+        public double this[int row, int column]
         {
             get => Data[row, column];
             set => Data[row, column] = value;
         }
 
-        public decimal[,] Data { get; set; }
+        public double[,] Data { get; set; }
 
         public int Rows { get => Data.GetLength(0); }
 
@@ -106,7 +106,7 @@ namespace VectorMath
             return result;
         }
 
-        public static Matrix operator *(Matrix mat, decimal lambda)
+        public static Matrix operator *(Matrix mat, double lambda)
         {
             Matrix result = new Matrix(mat);
 
@@ -117,7 +117,7 @@ namespace VectorMath
             return result;
         }
 
-        public static Matrix operator *(decimal lambda, Matrix mat)
+        public static Matrix operator *(double lambda, Matrix mat)
         {
             Matrix result = new Matrix(mat);
 
@@ -183,7 +183,7 @@ namespace VectorMath
         public override int GetHashCode()
         {
             var hashCode = 328679401;
-            hashCode = hashCode * -1521134295 + EqualityComparer<decimal[,]>.Default.GetHashCode(Data);
+            hashCode = hashCode * -1521134295 + EqualityComparer<double[,]>.Default.GetHashCode(Data);
             hashCode = hashCode * -1521134295 + Rows.GetHashCode();
             hashCode = hashCode * -1521134295 + Columns.GetHashCode();
             return hashCode;
@@ -207,7 +207,7 @@ namespace VectorMath
 
         public static class Factory
         {
-            public static Matrix Fill(int rows, int columns, decimal value)
+            public static Matrix Fill(int rows, int columns, double value)
             {
                 Matrix result = new Matrix(rows, columns);
 
@@ -218,14 +218,14 @@ namespace VectorMath
                 return result;
             }
 
-            public static Matrix Random(int rows, int columns, decimal minValue, decimal maxValue)
+            public static Matrix Random(int rows, int columns, double minValue, double maxValue)
             {
                 Matrix result = new Matrix(rows, columns);
                 Random random = new Random();
 
                 for (int i = 0; i < rows; i++)
                     for (int j = 0; j < columns; j++)
-                        result[i, j] = ((decimal) random.NextDouble()) * (maxValue - minValue) + minValue;
+                        result[i, j] = random.NextDouble() * (maxValue - minValue) + minValue;
 
                 return result;
             }
