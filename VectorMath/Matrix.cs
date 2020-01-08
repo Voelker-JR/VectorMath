@@ -128,6 +128,17 @@ namespace VectorMath
             return result;
         }
 
+        public static Matrix operator /(Matrix mat, double lambda)
+        {
+            Matrix result = new Matrix(mat);
+
+            for (int i = 0; i < mat.Rows; i++)
+                for (int j = 0; j < mat.Columns; j++)
+                    result[i, j] /= lambda;
+
+            return result;
+        }
+
         public static Matrix operator ^(Matrix a, Matrix b)
         {
             if (a.Rows != b.Rows)

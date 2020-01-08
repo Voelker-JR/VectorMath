@@ -125,6 +125,26 @@ namespace VectorMathTests
         }
 
         [TestMethod]
+        public void TestMatrixScalarDivision()
+        {
+            Matrix a = new Matrix(new double[,]
+            {
+                { 1, 2 },
+                { 4, -5 }
+            });
+
+            double lambda = 4;
+
+            Matrix expected = new Matrix(new double[,]
+            {
+                { 0.25, 0.5 },
+                { 1, -1.25 }
+            });
+
+            Assert.AreEqual(expected, a / lambda);
+        }
+
+        [TestMethod]
         public void TestMatrixTransposed()
         {
             Matrix a = new Matrix(new double[,]

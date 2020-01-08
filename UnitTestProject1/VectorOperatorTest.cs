@@ -62,6 +62,16 @@ namespace VectorMathTests
         }
 
         [TestMethod]
+        public void TestScalarDivision()
+        {
+            Vector a = new Vector(new double[] { 1, 2, 3 });
+
+            Vector expected = new Vector(new double[] { 0.5, 1, 1.5 });
+
+            Assert.AreEqual(expected, a / 2);
+        }
+
+        [TestMethod]
         public void TestScalarProduct()
         {
             Vector a = new Vector(new double[] { 1, 2, 3 });

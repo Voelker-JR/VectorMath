@@ -128,6 +128,16 @@ namespace VectorMath
             return result;
         }
 
+        public static Vector operator /(Vector v, double lambda)
+        {
+            Vector result = new Vector(v);
+
+            for (int i = 0; i < v.Dim; i++)
+                result[i] /= lambda;
+
+            return result;
+        }
+
         /// <summary>
         /// Defines a scalar product between two vectors.
         /// </summary>
